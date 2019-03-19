@@ -1,0 +1,11 @@
+(* compile to .ml files by running
+  node bin/atdgen.js -t examples/simple.atd
+ *)
+
+type affiliation = [ Good | Bad ]
+
+type character = {
+  name: string;
+  powerLevel: int;
+  affiliation: affiliation;
+}
