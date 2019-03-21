@@ -1,0 +1,17 @@
+{
+  "name": "atdgen-workshop-starter",
+  "reason": {
+    "react-jsx": 2
+  },
+  "sources": ["src_client", "src_server"],
+  "package-specs": [
+    {
+      "module": "commonjs",
+      "in-source": true
+    }
+  ],
+  "suffix": ".bs.js",
+  "namespace": true,
+  "bs-dependencies": ["bs-express", "reason-react"],
+  "refmt": 3
+}
