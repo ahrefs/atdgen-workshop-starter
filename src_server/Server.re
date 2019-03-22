@@ -15,18 +15,22 @@ let app = express();
 
 App.disable(app, ~name="x-powered-by");
 
-App.get(app, ~path="/refdomains") @@
-Middleware.from((next, req) =>
-  switch (Request.baseUrl(req)) {
-  | "" => Response.sendJson(getRefdomainsJson())
-  | _ => next(Next.route)
-  }
+App.useOnPath(
+  app,
+  ~path="/",
+  {
+    let options = Static.defaultOptions();
+    Static.make(".", options) |> Static.asMiddleware;
+  },
 );
 
-let onListen = e =>
-  switch (e) {
-  | exception (Js.Exn.Error(e)) =>
-    Js.log(e);
+App.get(app, ~path="/refdomains") @@
+Middleware.from((_next, _req) => Response.sendJson(getRefdomainsJson()));
+
+let onListen = err =>
+  switch (err) {
+  | exception (Js.Exn.Error(exn)) =>
+    Js.log(exn);
     Node.Process.exit(1);
   | _ => Js.log @@ "Listening at http://127.0.0.1:8000"
   };
