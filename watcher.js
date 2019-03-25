@@ -4,7 +4,7 @@ var wsReloader;
 var LAST_SUCCESS_BUILD_STAMP = (localStorage.getItem('LAST_SUCCESS_BUILD_STAMP') || 0)
 var WS_PORT = 9999; // configurable
 
-function setUpWebScoket() {
+function setUpWebSocket() {
     if (wsReloader == null || wsReloader.readyState !== 1) {
         try {
             wsReloader = new WebSocket(`ws://localhost:${WS_PORT}`)
@@ -23,5 +23,5 @@ function setUpWebScoket() {
     }
 };
 
-setUpWebScoket();
-setInterval(setUpWebScoket, 2000);
+setUpWebSocket();
+setInterval(setUpWebSocket, 2000);

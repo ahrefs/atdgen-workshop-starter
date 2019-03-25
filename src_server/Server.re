@@ -7,8 +7,9 @@ let dirname =
   };
 
 let getRefdomainsJson = () => {
-  Node.Fs.readFileAsUtf8Sync(Node.Path.join([|dirname, "Refdomains.json"|]))
-  |> Js.Json.parseExn;
+  Node.Path.join([|dirname, "Refdomains.json"|])
+  ->Node.Fs.readFileAsUtf8Sync
+  ->Js.Json.parseExn;
 };
 
 let app = express();
@@ -19,8 +20,7 @@ App.useOnPath(
   app,
   ~path="/",
   {
-    let options = Static.defaultOptions();
-    Static.make(".", options) |> Static.asMiddleware;
+    Static.defaultOptions() |> Static.make(".") |> Static.asMiddleware;
   },
 );
 

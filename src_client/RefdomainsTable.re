@@ -6,7 +6,7 @@ type state =
 
 /* Action declaration */
 type action =
-  | DidMount;
+  | FetchRefDomains;
 
 /* Component template declaration.
    Needs to be **after** state and action declarations! */
@@ -18,14 +18,16 @@ let make = _children => {
   /* spread the other default fields of component here and override a few */
   ...component,
 
-  didMount: self => self.send(DidMount),
+  didMount: self => self.send(FetchRefDomains),
   initialState: () => NotInitialized,
 
   /* State transitions */
   reducer: (action, _state) =>
     switch (action) {
-    | DidMount =>
-      Js.log("Component did mount. Fetching data from `localhost:8000/refdomains` could be added here.");
+    | FetchRefDomains =>
+      Js.log(
+        "Component did mount. Fetching data from `localhost:8000/refdomains` could be added here.",
+      );
       ReasonReact.Update(Mounted);
     },
 
