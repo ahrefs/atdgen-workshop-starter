@@ -11,21 +11,20 @@ type t = {
 // The main type that represents the object stored in refdomains.json
 type main = {refDomains: array(t)};
 
-
 // Encoders
 
-let encodeOne = r => Obj.magic(r); // <---- Implement
+let encodeOne: t => Js.Json.t = r => Obj.magic(r); // <---- Implement
 
-let encodeArray = arr => Obj.magic(arr); // <---- Implement
+let encodeArray: array(t) => Js.Json.t = arr => Obj.magic(arr); // <---- Implement
 
 let encodeMain = main =>
   Json.Encode.(object_([("refdomains", encodeArray(main.refDomains))]));
 
 // Decoders
 
-let decodeOne = json => Obj.magic(json); // <---- Implement
+let decodeOne: Js.Json.t => t = json => Obj.magic(json); // <---- Implement
 
-let decodeArray = json => Obj.magic(json); // <---- Implement
+let decodeArray: Js.Json.t => array(t) = json => Obj.magic(json); // <---- Implement
 
 let decodeMain = json =>
   Json.Decode.{refDomains: json |> field("refdomains", decodeArray)};
