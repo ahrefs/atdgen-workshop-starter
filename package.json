@@ -14,7 +14,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "@glennsl/bs-json": "^3.0.0",
+    "@ahrefs/bs-atdgen-codec-runtime": "^1.2.0",
     "bs-express": "^0.10.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",

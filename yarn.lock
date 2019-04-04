@@ -2,6 +2,13 @@
 # yarn lockfile v1
 
 
+"@ahrefs/bs-atdgen-codec-runtime@^1.2.0":
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@ahrefs/bs-atdgen-codec-runtime/-/bs-atdgen-codec-runtime-1.2.0.tgz#195c1f436590da22da3551662db1c123d05b6982"
+  integrity sha512-KKfn5KaCxCSY+zT2E0GjnhN3VUVvrJSfzNtWnaSqKCzrUKlbSvz0EjCqr3gUbMRTZ+/Ik+t1S77xp4q7xz00NQ==
+  dependencies:
+    "@glennsl/bs-json" "^3.0.0"
+
 "@glennsl/bs-json@^3.0.0":
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/@glennsl/bs-json/-/bs-json-3.0.0.tgz#b4e1cf6612270a8dd7287a8a71ebe17e8f0fb683"

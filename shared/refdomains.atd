@@ -1,0 +1,12 @@
+type refdomain = {
+  refdomain: string;
+  backlinks: int;
+  refpages: int;
+  first_seen: string;
+  last_visited: string;
+  domain_rating: int;
+}
+
+type response = {
+  refdomains: refdomain list;
+}

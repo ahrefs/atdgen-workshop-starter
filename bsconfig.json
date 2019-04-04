@@ -12,6 +12,10 @@
   ],
   "suffix": ".bs.js",
   "namespace": true,
-  "bs-dependencies": ["@glennsl/bs-json", "bs-express", "reason-react"],
+  "bs-dependencies": [
+    "@ahrefs/bs-atdgen-codec-runtime",
+    "bs-express",
+    "reason-react"
+  ],
   "refmt": 3
 }
