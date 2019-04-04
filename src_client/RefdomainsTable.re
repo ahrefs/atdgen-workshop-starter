@@ -62,14 +62,27 @@ let make = _children => {
     | FetchingData => <p> {s("Fetching data...")} </p>
     | Error =>
       <p> {s("Error while loading data. Check the browser console.")} </p>
-    | DataReady(_refdomains) =>
+    | DataReady(refdomains) =>
       <table>
         <thead>
-          <tr> <th> {s("Refdomain")} </th> <th> {s("Backlinks")} </th> </tr>
+          <tr>
+            <th> {s("Refdomain")} </th>
+            <th> {s("Backlinks")} </th>
+            <th> {s("Domain rating")} </th>
+            <th> {s("First seen")} </th>
+          </tr>
         </thead>
         <tbody>
-          <tr> <td> {s("foo.com")} </td> <td> {s("3")} </td> </tr>
-          <tr> <td> {s("bar.com")} </td> <td> {s("6")} </td> </tr>
+          {refdomains
+           ->Belt.Array.map(item =>
+               <tr key={item.refdomain}>
+                 <td> {s(item.refdomain)} </td>
+                 <td> {s(string_of_int(item.backlinks))} </td>
+                 <td> {s(string_of_int(item.domainRating))} </td>
+                 <td> {s(item.firstSeen)} </td>
+               </tr>
+             )
+           ->ReasonReact.array}
         </tbody>
       </table>
     };
