@@ -36,7 +36,7 @@ Now, open your browser in [`http://localhost:8000/`](http://localhost:8000/), yo
 
 ### Milestone 2: Automate encoders & decoders generation with atdgen
 
-Before starting, read the ["2-minutes intro to atdgen"](https://github.com/ahrefs/atdgen-workshop-starter/INTRO.md) documentation.
+Before starting, read the ["2-minutes intro to atdgen"](https://github.com/ahrefs/atdgen-workshop-starter/blob/master/INTRO.md) documentation.
 
 1. Remove `bs-json` from the package and `bsconfig.json`
 2. Add the atdgen runtime as dependency: `yarn add @ahrefs/bs-atdgen-codec-runtime`. This runtime is what will allow later to call functions like `Atdgen_codec_runtime.Decode.decode` from the server and client.
