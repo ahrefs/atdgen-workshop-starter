@@ -1,10 +1,12 @@
+type datetime = string wrap <ocaml module="Wrap.Datetime">
+
 type refdomain = {
   refdomain: string;
   backlinks: int;
   refpages: int;
-  first_seen: string;
-  last_visited: string;
-  domain_rating: int;
+  first_seen: datetime;
+  last_visited: datetime;
+  domain_rating: int wrap <ocaml module="Wrap.DomainRating">;
 }
 
 type response = {

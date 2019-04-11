@@ -1,17 +1,43 @@
 (* Auto-generated from "refdomains.atd" *)
               [@@@ocaml.warning "-27-32-35-39"]
 
+type datetime = Refdomains_t.datetime
+
 type refdomain = Refdomains_t.refdomain = {
   refdomain: string;
   backlinks: int;
   refpages: int;
-  first_seen: string;
-  last_visited: string;
-  domain_rating: int
+  first_seen: datetime;
+  last_visited: datetime;
+  domain_rating: Wrap.DomainRating.t
 }
 
 type response = Refdomains_t.response = { refdomains: refdomain list }
 
+let write__1 = (
+    Atdgen_codec_runtime.Encode.string
+  |> Atdgen_codec_runtime.Encode.contramap (Wrap.Datetime.unwrap)
+)
+let read__1 = (
+  (
+    Atdgen_codec_runtime.Decode.string
+  ) |> (Atdgen_codec_runtime.Decode.map (Wrap.Datetime.wrap))
+)
+let write_datetime = (
+  write__1
+)
+let read_datetime = (
+  read__1
+)
+let write__2 = (
+    Atdgen_codec_runtime.Encode.int
+  |> Atdgen_codec_runtime.Encode.contramap (Wrap.DomainRating.unwrap)
+)
+let read__2 = (
+  (
+    Atdgen_codec_runtime.Decode.int
+  ) |> (Atdgen_codec_runtime.Decode.map (Wrap.DomainRating.wrap))
+)
 let write_refdomain = (
   Atdgen_codec_runtime.Encode.make (fun (t : refdomain) ->
     (
@@ -40,21 +66,21 @@ let write_refdomain = (
         ;
           Atdgen_codec_runtime.Encode.field
             (
-            Atdgen_codec_runtime.Encode.string
+            write_datetime
             )
           ~name:"first_seen"
           t.first_seen
         ;
           Atdgen_codec_runtime.Encode.field
             (
-            Atdgen_codec_runtime.Encode.string
+            write_datetime
             )
           ~name:"last_visited"
           t.last_visited
         ;
           Atdgen_codec_runtime.Encode.field
             (
-            Atdgen_codec_runtime.Encode.int
+            write__2
             )
           ~name:"domain_rating"
           t.domain_rating
@@ -87,31 +113,31 @@ let read_refdomain = (
           first_seen =
             Atdgen_codec_runtime.Decode.decode
             (
-              Atdgen_codec_runtime.Decode.string
+              read_datetime
               |> Atdgen_codec_runtime.Decode.field "first_seen"
             ) json;
           last_visited =
             Atdgen_codec_runtime.Decode.decode
             (
-              Atdgen_codec_runtime.Decode.string
+              read_datetime
               |> Atdgen_codec_runtime.Decode.field "last_visited"
             ) json;
           domain_rating =
             Atdgen_codec_runtime.Decode.decode
             (
-              Atdgen_codec_runtime.Decode.int
+              read__2
               |> Atdgen_codec_runtime.Decode.field "domain_rating"
             ) json;
       } : refdomain)
     )
   )
 )
-let write__1 = (
+let write__3 = (
   Atdgen_codec_runtime.Encode.list (
     write_refdomain
   )
 )
-let read__1 = (
+let read__3 = (
   Atdgen_codec_runtime.Decode.list (
     read_refdomain
   )
@@ -123,7 +149,7 @@ let write_response = (
       [
           Atdgen_codec_runtime.Encode.field
             (
-            write__1
+            write__3
             )
           ~name:"refdomains"
           t.refdomains
@@ -138,7 +164,7 @@ let read_response = (
           refdomains =
             Atdgen_codec_runtime.Decode.decode
             (
-              read__1
+              read__3
               |> Atdgen_codec_runtime.Decode.field "refdomains"
             ) json;
       } : response)

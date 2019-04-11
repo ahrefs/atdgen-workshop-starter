@@ -5,6 +5,7 @@
     "build": "bsb -make-world",
     "start": "bsb -make-world -w -ws _ ",
     "clean": "bsb -clean-world",
+    "gen": "node ./bin/atdgen.js -t ./shared/refdomains.atd && node ./bin/atdgen.js -bs ./shared/refdomains.atd",
     "server": "bsb -make-world && node ./src_server/Server.bs.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
