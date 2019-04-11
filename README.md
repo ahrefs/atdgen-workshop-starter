@@ -7,13 +7,13 @@ Clone this repo to help you start the [atdgen workshop](https://github.com/ahref
 Install BuckleScript
 
 ```bash
-npm init
+yarn init
 
 # Install bs-platform
-npm add bs-platform --dev
+yarn add bs-platform --dev
 
 # Add runtime to be used by generated code
-npm add @ahrefs/bs-atdgen-codec-runtime
+yarn add @ahrefs/bs-atdgen-codec-runtime
 
 # Create basic ReasonReact project
 yarn bsb -init . -theme react-lite
