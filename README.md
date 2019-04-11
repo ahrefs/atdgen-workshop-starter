@@ -28,8 +28,6 @@ Now, open your browser in [`http://localhost:8000/`](http://localhost:8000/), yo
 
 ## Suggested approach
 
-*Note: new approach proposed here. the old one is kept below*
-
 ### Milestone 1: Use bs-json to encode/decode data
 
 1. Start the server by running `yarn server` (or `npm run server`)
