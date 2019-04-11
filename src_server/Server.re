@@ -32,7 +32,7 @@ let onListen = err =>
   | exception (Js.Exn.Error(exn)) =>
     Js.log(exn);
     Node.Process.exit(1);
-  | _ => Js.log @@ "Listening at http://127.0.0.1:8000"
+  | _ => Js.log @@ "Listening at http://localhost:8000"
   };
 
 let server = App.listen(app, ~port=8000, ~onListen, ());
