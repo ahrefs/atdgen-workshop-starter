@@ -39,11 +39,17 @@ Using ATD requires just 2 steps:
       day : int;
     }
 
-### How does atdgen compare to bs-json?
+## How does atdgen compare to bs-json and graphql?
+| <img src="https://media.giphy.com/media/PkR8XIh9MHEJeqJEAa/giphy.gif" width="200" alt="yoshi" /> | <img src="https://media.giphy.com/media/10RgZyfaX0HBSg/giphy.gif" width="200" alt="mario" /> | <img src="https://media.giphy.com/media/gdeoUMHvEWi5DSjAbh/giphy.gif" width="200" alt="bowser" /> |
+|---|---|---|
+| **bs-json**| **atdgen**  | **graphql**  |
+| Lightweight, easy to get started, <br>but hard to maintain, requires a lot of manual work | Automates code generation of encoders and decoders, <br> fairly easy to setup | Solves all kinds of problems (types, caching, overfetching and others), <br>but heavyweight, requires specific infrastracture  |
+
+#### bs-json
 
 `atdgen` provides more features than `bs-json`, as it doesn't require to write encoders and decoders manually: it automates the generation of those parts through tooling.
 
-### How does atdgen compare to GraphQL?
+#### graphql
 
 `atdgen` is a less "holistic" solution than GraphQL, and because of that, more compatible with any tech stack that your app is using. While GraphQL imposes restrictions on the way it has to be implemented (like the spec defining that ["clients use the GraphQL query language to make requests to a GraphQL service"](https://facebook.github.io/graphql/June2018/#sec-Language)) `atdgen` does not make any assumptions on how different parts might communicate between them, tackling exclusively the problem of encoding and decoding, so the data types are kept in sync.
 
