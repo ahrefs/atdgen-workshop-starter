@@ -7,7 +7,7 @@ let dirname =
   };
 
 let getRefdomainsJson = () => {
-  Node.Path.join([|dirname, "Refdomains.json"|])
+  Node.Path.join([|dirname, "refdomains.json"|])
   ->Node.Fs.readFileAsUtf8Sync
   ->Js.Json.parseExn
   ->Refdomains.decodeMain;
