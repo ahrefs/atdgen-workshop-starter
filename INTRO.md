@@ -43,7 +43,7 @@ Using ATD requires just 2 steps:
 | <img src="https://media.giphy.com/media/PkR8XIh9MHEJeqJEAa/giphy.gif" width="200" alt="yoshi" /> | <img src="https://media.giphy.com/media/10RgZyfaX0HBSg/giphy.gif" width="200" alt="mario" /> | <img src="https://media.giphy.com/media/gdeoUMHvEWi5DSjAbh/giphy.gif" width="200" alt="bowser" /> |
 |---|---|---|
 | **bs-json**| **atdgen**  | **graphql**  |
-| Lightweight, easy to get started, <br>but hard to maintain, requires a lot of manual work | Automates code generation of encoders and decoders, <br> fairly easy to setup | Solves all kinds of problems (types, caching, overfetching and others), <br>but heavyweight, requires specific infrastructure  |
+| Lightweight, easy to get started, <br>but hard to maintain, requires a lot of manual work | Automates code generation of encoders and decoders, <br> fairly easy to setup | Solves all kinds of problems (types, caching, overfetching and others), <br>requires specific infrastructure  |
 
 #### bs-json
 
