@@ -40,7 +40,7 @@ Before starting, read the ["2-minutes intro to atdgen"](https://github.com/ahref
 
 1. Remove `bs-json` from the package and `bsconfig.json`
 2. Add the atdgen runtime as dependency: `yarn add @ahrefs/bs-atdgen-codec-runtime`. This runtime is what will allow later to call functions like `Atdgen_codec_runtime.Decode.decode` from the server and client.
-3. Replace `[RefDomains.re](http://refdomains.re)` with a new `refdomains.atd` file, based on the types in `Refdomain.re` from milestone 1 (you can see the `examples` folder for a reference).
+3. Replace [RefDomains.re](https://github.com/ahrefs/atdgen-workshop-starter/blob/master/shared/Refdomains.re) with a new `refdomains.atd` file, based on the types in `Refdomain.re` from milestone 1 (you can see the `examples` folder for a reference).
 4. Use atdgen to generate the encoders and decoders automatically
    1. `node bin/atdgen.js -t shared/refdomains.atd` to generate the types
    2. `node bin/atdgen.js -bs shared/refdomains.atd` to generate the functions
