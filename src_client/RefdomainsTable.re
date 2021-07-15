@@ -5,12 +5,12 @@ type state =
   | Init
   | FetchingData
   | Error
-  | DataReady(array(Refdomains.t));
+  | DataReady(list(Refdomains_bs.refdomain));
 
 /* Action declaration */
 type action =
   | ComponentMounted
-  | DataFetched(array(Refdomains.t))
+  | DataFetched(list(Refdomains_bs.refdomain))
   | DataFetchingFailed(Js.Promise.error);
 
 /* Component template declaration.
@@ -37,8 +37,8 @@ let make = () => {
     |> then_(response => response |> Window.json())
     |> then_(json =>
          json
-         |> Refdomains.decodeMain
-         |> (decoded => dispatch(DataFetched(decoded.refDomains)) |> resolve)
+         |> Refdomains_bs.read_response
+         |> (decoded => dispatch(DataFetched(decoded.refdomains)) |> resolve)
        )
     |> catch(_error => {
          Js.log(_error);
@@ -48,33 +48,34 @@ let make = () => {
     dispatch(ComponentMounted);
     None;
   });
-    switch (state) {
-    | Init => <p> {s("Component ready")} </p>
-    | FetchingData => <p> {s("Fetching data...")} </p>
-    | Error =>
-      <p> {s("Error while loading data. Check the browser console.")} </p>
-    | DataReady(refdomains) =>
-      <table>
-        <thead>
-          <tr>
-            <th> {s("Refdomain")} </th>
-            <th> {s("Backlinks")} </th>
-            <th> {s("Domain rating")} </th>
-            <th> {s("First seen")} </th>
-          </tr>
-        </thead>
-        <tbody>
-          {refdomains
-           ->Belt.Array.map(item =>
-               <tr key={item.refdomain}>
-                 <td> {s(item.refdomain)} </td>
-                 <td> {s(string_of_int(item.backlinks))} </td>
-                 <td> {s(string_of_int(item.domainRating))} </td>
-                 <td> {s(item.firstSeen)} </td>
-               </tr>
-             )
-           ->ReasonReact.array}
-        </tbody>
-      </table>
-    };
+  switch (state) {
+  | Init => <p> {s("Component ready")} </p>
+  | FetchingData => <p> {s("Fetching data...")} </p>
+  | Error =>
+    <p> {s("Error while loading data. Check the browser console.")} </p>
+  | DataReady(refdomains) =>
+    <table>
+      <thead>
+        <tr>
+          <th> {s("Refdomain")} </th>
+          <th> {s("Backlinks")} </th>
+          <th> {s("Domain rating")} </th>
+          <th> {s("First seen")} </th>
+        </tr>
+      </thead>
+      <tbody>
+        {refdomains
+         ->Belt.List.map(item =>
+             <tr key={item.refdomain}>
+               <td> {s(item.refdomain)} </td>
+               <td> {s(string_of_int(item.backlinks))} </td>
+               <td> {s(string_of_int(item.domain_rating))} </td>
+               <td> {s(item.first_seen)} </td>
+             </tr>
+           )
+         ->Belt.List.toArray
+         ->React.array}
+      </tbody>
+    </table>
+  };
 };
