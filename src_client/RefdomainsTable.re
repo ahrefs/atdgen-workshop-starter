@@ -15,48 +15,39 @@ type action =
 
 /* Component template declaration.
    Needs to be **after** state and action declarations! */
-let component = ReasonReact.reducerComponent(__MODULE__);
+let s = React.string;
 
-let s = ReasonReact.string;
-
-let make = _children => {
-  /* spread the other default fields of component here and override a few */
-  ...component,
-
-  didMount: self => self.send(ComponentMounted),
-
-  initialState: () => Init,
-
+[@react.component]
+let make = () => {
   /* State transitions */
-  reducer: (action, _state) =>
-    switch (action) {
-    | ComponentMounted =>
-      ReasonReact.UpdateWithSideEffects(
-        FetchingData,
-        self =>
-          Window.fetch("http://localhost:8000/refdomains")
-          |> then_(response => response |> Window.json())
-          |> then_(json =>
-               json
-               |> Refdomains.decodeMain
-               |> (
-                 decoded =>
-                   self.send(DataFetched(decoded.refDomains)) |> resolve
-               )
-             )
-          |> catch(_error => {
-               Js.log(_error);
-               self.send(DataFetchingFailed(_error)) |> resolve;
-             })
-          |> ignore,
-      )
-    | DataFetchingFailed(err) =>
-      Js.log(err);
-      ReasonReact.Update(Error);
-    | DataFetched(json) => ReasonReact.Update(DataReady(json))
-    },
-
-  render: ({state}) => {
+  let (state, dispatch) =
+    React.useReducer(
+      (_state, action) =>
+        switch (action) {
+        | ComponentMounted => FetchingData
+        | DataFetchingFailed(err) =>
+          Js.log(err);
+          Error;
+        | DataFetched(json) => DataReady(json)
+        },
+      Init,
+    );
+  React.useEffect0(() => {
+    Window.fetch("http://localhost:8000/refdomains")
+    |> then_(response => response |> Window.json())
+    |> then_(json =>
+         json
+         |> Refdomains.decodeMain
+         |> (decoded => dispatch(DataFetched(decoded.refDomains)) |> resolve)
+       )
+    |> catch(_error => {
+         Js.log(_error);
+         dispatch(DataFetchingFailed(_error)) |> resolve;
+       })
+    |> ignore;
+    dispatch(ComponentMounted);
+    None;
+  });
     switch (state) {
     | Init => <p> {s("Component ready")} </p>
     | FetchingData => <p> {s("Fetching data...")} </p>
@@ -86,5 +77,4 @@ let make = _children => {
         </tbody>
       </table>
     };
-  },
 };
