@@ -1,7 +1,7 @@
 {
   "name": "atdgen-workshop-starter",
   "reason": {
-    "react-jsx": 2
+    "react-jsx": 3
   },
   "sources": ["shared", "src_client", "src_server"],
   "package-specs": [
@@ -12,10 +12,5 @@
   ],
   "suffix": ".bs.js",
   "namespace": true,
-  "bs-dependencies": [
-    "@ahrefs/bs-atdgen-codec-runtime",
-    "bs-express",
-    "reason-react"
-  ],
-  "refmt": 3
+  "bs-dependencies": ["@ahrefs/bs-atdgen-codec-runtime", "bs-express", "reason-react"]
 }
