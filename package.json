@@ -2,6 +2,7 @@
   "name": "atdgen-workshop-starter",
   "version": "0.1.0",
   "scripts": {
+    "format": "find . -iname '*.re' | grep -v node_modules | xargs bsrefmt --in-place && find . -iname '*.rei' | grep -v node_modules  | xargs bsrefmt -i true --in-place",
     "build": "bsb -make-world",
     "start": "bsb -make-world -w -ws _ ",
     "clean": "bsb -clean-world",
@@ -14,13 +15,13 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "@glennsl/bs-json": "^3.0.0",
-    "bs-express": "^0.10.0",
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0",
-    "reason-react": ">=0.4.0"
+    "@glennsl/bs-json": "^5.0.4",
+    "bs-express": "^1.0.2",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "reason-react": ">=0.9.1"
   },
   "devDependencies": {
-    "bs-platform": "^5.0.0"
+    "bs-platform": "^9.0.2"
   }
 }
